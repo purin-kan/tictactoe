@@ -1,7 +1,7 @@
-let currentTurn = 'x';
+let currentTurn = 'X';
 
 const reset = () => {
-    currentTurn = 'x';
+    currentTurn = 'X';
 
     let numberOfGrid = document.querySelectorAll(".grid-cell");
     for (let i = 0; i < numberOfGrid.length; i++) {
@@ -43,8 +43,12 @@ const checkWin = () => {
     } else if (c.c1 === c.c4 && c.c4 === c.c7 && c.c1 !== "") {
         win = true;
     }
-    // todo more win conditions
+    // todo more win conditions here
 
+    if (win) {
+        document.body.style.backgroundColor = "white";
+        disableGrid();
+    }
     return win;
 }
 
@@ -58,26 +62,25 @@ const disableGrid = () => {
 
 
 const play = (cellNo) => {
-    if (checkWin()) {
-        document.body.style.backgroundColor = "white";
-        disableGrid();
-    //     fixme requires addition click to turn white
-    } else {
-        if (currentTurn === 'x') {
+    if (!checkWin()) {
+        if (currentTurn === 'X') {
             document.body.style.backgroundColor = "#4490BB";
             document.getElementById('cell' + cellNo).textContent = currentTurn;
 
-            currentTurn = 'o';
+            currentTurn = 'O';
         } else {
             document.body.style.backgroundColor = "#BB6F44";
             document.getElementById('cell' + cellNo).textContent = currentTurn;
 
-            currentTurn = 'x';
+            currentTurn = 'X';
         }
         updateContent();
+    }
+    if (checkWin()) {
+        checkWin();
     }
 }
 
 const updateContent = () => {
-    document.getElementById('player-turn').textContent = (currentTurn === 'x') ? "Player 1's Turn (" + currentTurn + ")" : "Player 2's Turn (" + currentTurn + ")";
+    document.getElementById('player-turn').textContent = (currentTurn === 'X') ? "Player 1's Turn (" + currentTurn + ")" : "Player 2's Turn (" + currentTurn + ")";
 }
