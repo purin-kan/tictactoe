@@ -40,13 +40,23 @@ const checkWin = () => {
         win = true;
     } else if (c.c4 === c.c5 && c.c5 === c.c6 && c.c4 !== "") {
         win = true;
+    } else if (c.c7 === c.c8 && c.c8 === c.c9 && c.c7 !== "") {
+        win = true;
     } else if (c.c1 === c.c4 && c.c4 === c.c7 && c.c1 !== "") {
         win = true;
+    } else if (c.c2 === c.c5 && c.c5 === c.c8 && c.c2 !== "") {
+        win = true;
+    } else if (c.c3 === c.c6 && c.c6 === c.c9 && c.c3 !== "") {
+        win = true;
+    } else if (c.c1 === c.c5 && c.c5 === c.c9 && c.c1 !== "") {
+        win = true;
+    } else if (c.c3 === c.c5 && c.c5 === c.c7 && c.c3 !== "") {
+        win = true;
     }
-    // todo more win conditions here
 
     if (win) {
         document.body.style.backgroundColor = "white";
+        document.getElementById('player-turn').textContent = currentTurn + " Wins!";
         disableGrid();
     }
     return win;
@@ -82,5 +92,5 @@ const play = (cellNo) => {
 }
 
 const updateContent = () => {
-    document.getElementById('player-turn').textContent = (currentTurn === 'X') ? "Player 1's Turn (" + currentTurn + ")" : "Player 2's Turn (" + currentTurn + ")";
+    document.getElementById('player-turn').textContent = currentTurn + "'s turn";
 }
